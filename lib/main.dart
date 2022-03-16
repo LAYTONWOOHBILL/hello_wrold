@@ -119,7 +119,7 @@ class TutorialHome extends StatelessWidget {
         ],
       ),
       body: const Center(
-        child: Text("Hello World!"),
+        child: MyButton(),
       ),
       floatingActionButton: const FloatingActionButton(child: Icon(Icons.add),onPressed: null, tooltip: 'Add',),
     );
@@ -130,3 +130,42 @@ class TutorialHome extends StatelessWidget {
 //https://docs.flutter.dev/development/ui/widgets/cupertino
 
 
+// *************************
+// **  Handling gestures  **
+// *************************
+
+/*
+*--------------*
+* TutorialHome *
+*--------------*
+*    child     *
+*--------------*
+*   MyButton   *
+*--------------*
+* */
+class MyButton extends StatelessWidget {
+  const MyButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      //  provide optional callbacks for other widgets
+      onTap: (){
+        // printing a message to the console.
+        print('Hello World!');
+      },
+      child: Container(
+        height: 50.0 ,
+        padding: const EdgeInsets.all(8.0) ,
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color:  Colors.lightGreen[500],
+        ) ,
+        child: const Center(
+          child: Text("Press"),
+        ),
+      ),
+    );
+  }
+}
