@@ -24,7 +24,9 @@ void main() {
     const MaterialApp(
       title: 'My app', // used by the OS task switcher
       home: SafeArea(
-        child: MyScaffold(),
+        // child: MyScaffold(),
+        child: TutorialHome(),
+
       ),
     ),
   );
@@ -99,5 +101,32 @@ class MyAppBar extends StatelessWidget {
     );
   }
 }
+
+// the code has switched from MyAppBar and MyScaffold to the AppBar and Scaffold widgets
+class TutorialHome extends StatelessWidget {
+  const TutorialHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Scaffold is a layout for the major Material Components.
+    // This example shows a Scaffold with a body and FloatingActionButton.
+    return Scaffold(
+      appBar: AppBar(
+        leading: const IconButton(onPressed: null, icon: Icon(Icons.menu), tooltip: "Nav bar",),
+        title: const Text("Example Title"),
+        actions: const[
+          IconButton(onPressed: null, icon: Icon(Icons.search), tooltip: "search",)
+        ],
+      ),
+      body: const Center(
+        child: Text("Hello World!"),
+      ),
+      floatingActionButton: const FloatingActionButton(child: Icon(Icons.add),onPressed: null, tooltip: 'Add',),
+    );
+  }
+}
+
+// Material is one of the 2 bundled designs included with Flutter. To create an iOS-centric design,
+//https://docs.flutter.dev/development/ui/widgets/cupertino
 
 
