@@ -22,11 +22,13 @@ of which the following are commonly used:
 void main() {
   runApp(
     const MaterialApp(
-      title: 'My app', // used by the OS task switcher
-      home: SafeArea(
+      // title: 'My app', // used by the OS task switcher
+      home: Scaffold(
         // child: MyScaffold(),
-        child: TutorialHome(),
-
+        // child: TutorialHome(),
+        body: Center(
+          child: Counter(),
+        ),
       ),
     ),
   );
@@ -169,3 +171,60 @@ class MyButton extends StatelessWidget {
     );
   }
 }
+
+
+// Changing widgets in response to input
+
+// to react in more interesting ways to user input—applications typically carry some state.
+// StatefulWidgets are special widgets that know how to generate State objects,
+// which are then used to hold state.
+
+// What is the difference between the "const" and "final" keywords in Dart?
+// https://stackoverflow.com/questions/50431055/what-is-the-difference-between-the-const-and-final-keywords-in-dart
+
+class Counter extends StatefulWidget {
+  // This class is the configuration for the state.
+  // It holds the values (in this case nothing) provided
+  // by the parent and used by the build  method of the
+  // State. Fields in a Widget subclass are always marked
+  // "final".
+  const Counter({Key? key}) : super(key: key);
+
+  @override
+  State<Counter> createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  int _counter = 0;
+
+  void _increment(){
+    setState(() {
+      _counter++;
+      // This call to setState tells the Flutter framework
+      // that something has changed in this State, which
+      // causes it to rerun the build method below so that
+      // the display can reflect the updated values. If you
+      // change _counter without calling setState(), then
+      // the build method won't be called again, and so
+      // nothing would appear to happen.
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ElevatedButton(
+          onPressed: _increment,
+          child: const Text('Increment'),
+        ),
+        const SizedBox(width: 16),
+        Text('Count: $_counter'),
+        MyButton(),
+      ],
+    );
+  }
+}
+
